@@ -16,6 +16,8 @@
 
 
 
+
+
 apply plugin: 'android-library'
 apply plugin: 'maven'
 apply plugin: 'signing'
@@ -49,7 +51,7 @@ allprojects { ext."signing.keyId" = gpgProps["signing.keyId"] }
 allprojects { ext."signing.password" = gpgProps["signing.password"] }
 allprojects { ext."signing.secretKeyRingFile" = gpgProps["signing.secretKeyRingFile"] }
 
-group = 'com.zenstyle'
+group = 'com.github.tbouron'
 version = version
 
 configurations {

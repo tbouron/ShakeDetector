@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zenstyle.shakedetector.library;
+package com.github.tbouron.shakedetector.library;
 
 import android.app.Activity;
 import android.app.Fragment;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zenstyle.shakedetector.example;
+package com.github.tbouron.shakedetector.example;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -29,7 +29,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zenstyle.shakedetector.library.ShakeDetector;
+import com.github.tbouron.shakedetector.library.ShakeDetector;
+import com.github.tbouron.shakedetector.example.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
