@@ -18,6 +18,8 @@
 
 
 
+
+
 apply plugin: 'android-library'
 apply plugin: 'maven'
 apply plugin: 'signing'
@@ -51,7 +53,7 @@ allprojects { ext."signing.keyId" = gpgProps["signing.keyId"] }
 allprojects { ext."signing.password" = gpgProps["signing.password"] }
 allprojects { ext."signing.secretKeyRingFile" = gpgProps["signing.secretKeyRingFile"] }
 
-group = 'com.github.tbouron'
+group = 'com.github.tbouron.shakedetector'
 version = version
 
 configurations {
@@ -72,6 +74,10 @@ uploadArchives {
 
         repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
             authentication(userName: gpgProps['sonatypeUsername'], password: gpgProps['sonatypePassword'])
+        }
+
+        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+            authentication(userName: gpgProps["sonatypeUsername"], password: gpgProps["sonatypePassword"])
         }
 
         pom.project {
