@@ -16,6 +16,8 @@
 
 
 
+
+
 apply plugin: 'android'
 
 android {
@@ -49,6 +51,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             signingConfig signingConfigs.release
         }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
