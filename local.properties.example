@@ -1,0 +1,4 @@
+# This is an example of local.properties file.
+sdk.dir=/path/to/android/sdk
+keystore.props.file=../keystore.properties
+gpg.props.file=../gpg.properties

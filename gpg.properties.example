@@ -1,0 +1,8 @@
+# This is an example of gpg.properties file.
+# It contains all properties required to sign and deploy the artifact on sonatype OSS
+signing.keyId=your_key_id
+signing.password=your_password
+signing.secretKeyRingFile=/path/to/your/key/ring/file.gpg
+
+sonatypeUsername=your_sonatype_username
+sonatypePassword=your_sonatype_password

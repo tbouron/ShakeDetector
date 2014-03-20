@@ -17,6 +17,8 @@
 
 
 apply plugin: 'android-library'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 android {
     compileSdkVersion 19
@@ -33,6 +35,70 @@ android {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+def Properties localProps = new Properties()
+localProps.load(new FileInputStream(file('../local.properties')))
+def Properties gpgProps = new Properties()
+assert localProps['keystore.props.file'];
+gpgProps.load(new FileInputStream(file(localProps['gpg.props.file'])))
+
+allprojects { ext."signing.keyId" = gpgProps["signing.keyId"] }
+allprojects { ext."signing.password" = gpgProps["signing.password"] }
+allprojects { ext."signing.secretKeyRingFile" = gpgProps["signing.secretKeyRingFile"] }
+
+group = 'com.zenstyle'
+version = version
+
+configurations {
+    archives {
+        extendsFrom configurations.default
+    }
+}
+
+signing {
+    required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+uploadArchives {
+    configuration = configurations.archives
+    repositories.mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            authentication(userName: gpgProps['sonatypeUsername'], password: gpgProps['sonatypePassword'])
+        }
+
+        pom.project {
+            name 'Android Shake Detector Library'
+            packaging 'aar'
+            description 'This library provides a easy way to detect a shake movement using the build-in accelerometer and fire a callback on the UI thread every times it happens.'
+            url 'https://github.com/tbouron/ShakeDetector'
+
+            scm {
+                url 'https://github.com/tbouron/ShakeDetector.git'
+                connection 'scm:git:https://github.com/tbouron/ShakeDetector'
+                developerConnection 'scm:git:https://github.com/tbouron/ShakeDetector'
+            }
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+
+            developers {
+                developer {
+                    id 'tbouron'
+                    name 'Thomas Bouron'
+                    email 'tbouron@gmail.com'
+                }
+            }
         }
     }
 }

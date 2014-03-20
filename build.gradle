@@ -17,13 +17,16 @@
 
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url "https://oss.sonatype.org/content/groups/public"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath 'com.github.townsfolk:gradle-release:+'
     }
 }
 
@@ -32,3 +35,25 @@ allprojects {
         mavenCentral()
     }
 }
+
+apply plugin: 'release'
+
+release {
+    failOnPublishNeeded = false
+    preTagCommitMessage = '[RELEASE] Released version:'
+    tagCommitMessage = '[RELEASE] Tagged version:'
+    newVersionCommitMessage = '[RELEASE] Bumped version for next development iteration:'
+}
+
+task updateVersionCode << {
+    def oldVersionCode = Integer.parseInt(project.versionCode)
+    def newVersionCode = oldVersionCode + 1
+
+    if (oldVersionCode != newVersionCode) {
+        project.ant.propertyfile(file: "gradle.properties") {
+            entry(key: "versionCode", value: "${newVersionCode}")
+        }
+    }
+}
+
+updateVersion.dependsOn updateVersionCode
