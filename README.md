@@ -54,14 +54,15 @@ You can also change the default configuration by using the following method:
     ShakeDetector.updateConfiguration(float sensibility, int numberOfShake);
 
 For more information, please check out [the source code of the example app on Github](https://github.com/tbouron/ShakeDetector/blob/master/example/src/main/java/com/github/tbouron/shakedetector/example/MainActivity.java)
+
 Example app
 =======
 
 You can test the library through **[example app published on Google Play](https://play.google.com/store/apps/details?id=com.github.tbouron.shakedetector.example)**
 
-<img src="https://raw.githubusercontent.com/tbouron/ShakeDetector/master/art/screenshots/en/device-2014-03-21-095736.png" width="150" align="left" hspace="20">
-<img src="https://raw.githubusercontent.com/tbouron/ShakeDetector/master/art/screenshots/en/device-2014-03-21-095822.png" width="150" align="left" hspace="20">
-<img src="https://raw.githubusercontent.com/tbouron/ShakeDetector/master/art/screenshots/en/device-2014-03-21-095850.png" width="150" align="left" hspace="20">
+<img src="https://raw.githubusercontent.com/tbouron/ShakeDetector/master/art/screenshots/en/device-2014-03-21-095736.png" width="150" hspace="20">
+<img src="https://raw.githubusercontent.com/tbouron/ShakeDetector/master/art/screenshots/en/device-2014-03-21-095822.png" width="150" hspace="20">
+<img src="https://raw.githubusercontent.com/tbouron/ShakeDetector/master/art/screenshots/en/device-2014-03-21-095850.png" width="150" hspace="20">
 
 Author
 =======
