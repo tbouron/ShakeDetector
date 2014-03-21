@@ -18,6 +18,8 @@
 
 
 
+
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
@@ -47,11 +49,9 @@ release {
     newVersionCommitMessage = '[RELEASE] Bumped version for next development iteration:'
 }
 
-task deploy(dependsOn: createReleaseTag) << {
-    subprojects.find('library').uploadArchives
-}
+createReleaseTag.dependsOn(':library:uploadArchives')
 
-task updateVersionCode(dependsOn: updateVersion) << {
+task updateVersionCode << {
     def oldVersionCode = Integer.parseInt(project.versionCode)
     def newVersionCode = oldVersionCode + 1
 
@@ -61,3 +61,4 @@ task updateVersionCode(dependsOn: updateVersion) << {
         }
     }
 }
+updateVersion.dependsOn('updateVersionCode')
