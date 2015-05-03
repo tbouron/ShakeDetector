@@ -25,7 +25,7 @@ buildscript {
     repositories {
         mavenCentral()
         maven {
-            url "https://oss.sonatype.org/content/groups/public"
+            url 'https://oss.sonatype.org/content/groups/public'
         }
     }
     dependencies {
@@ -56,8 +56,8 @@ task updateVersionCode << {
     def newVersionCode = oldVersionCode + 1
 
     if (oldVersionCode != newVersionCode) {
-        project.ant.propertyfile(file: "gradle.properties") {
-            entry(key: "versionCode", value: "${newVersionCode}")
+        project.ant.propertyfile(file: 'gradle.properties') {
+            entry(key: 'versionCode', value: "${newVersionCode}")
         }
     }
 }

@@ -24,6 +24,12 @@ apply plugin: 'android-library'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
+configurations {
+    archives {
+        extendsFrom configurations.default
+    }
+}
+
 android {
     compileSdkVersion 19
     buildToolsVersion "19.0.3"
@@ -43,6 +49,13 @@ android {
     }
 }
 
+dependencies {
+    androidTestCompile 'junit:junit:4.10'
+    androidTestCompile 'org.mockito:mockito-core:1.9.5'
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.0'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.0'
+}
+
 def Properties localProps = new Properties()
 localProps.load(new FileInputStream(file('../local.properties')))
 def Properties gpgProps = new Properties()
@@ -55,12 +68,6 @@ allprojects { ext."signing.secretKeyRingFile" = gpgProps["signing.secretKeyRingF
 
 group = 'com.github.tbouron.shakedetector'
 version = version
-
-configurations {
-    archives {
-        extendsFrom configurations.default
-    }
-}
 
 signing {
     required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }

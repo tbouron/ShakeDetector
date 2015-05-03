@@ -125,7 +125,7 @@ public class ShakeDetector implements SensorEventListener {
      */
     public static boolean create(Context context, OnShakeListener listener) {
         if (context == null) {
-            throw new IllegalArgumentException("Context must not be null");
+            throw new IllegalArgumentException("Context must not be null.");
         }
 
         if (mSensorManager == null) {
@@ -184,7 +184,7 @@ public class ShakeDetector implements SensorEventListener {
 
     private ShakeDetector(OnShakeListener listener) {
         if (listener == null) {
-            throw new IllegalArgumentException("Shake listener must not be null");
+            throw new IllegalArgumentException("Shake listener must not be null.");
         }
         mShakeListener = listener;
         mSensorBundles = new ArrayList<SensorBundle>();
