@@ -10,7 +10,7 @@ Usage
 Shake Detector library is pushed to Maven Central as an AAR, so you just need to add the following dependency to your `build.gradle`
 
     dependencies {
-        compile 'com.github.tbouron.shakedetector:library:1.0.0'
+        compile 'com.github.tbouron.shakedetector:library:1.0.0@aar'
     }
 
 The API is designed to follow closely an activity or fragment lifecycle. Here is an example of how
